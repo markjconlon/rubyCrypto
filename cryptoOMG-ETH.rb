@@ -51,6 +51,7 @@ def profitable_trade(trades)
   counter = 0
   high_sell = find_highest_sell(trades[:sells])
   low_buy = find_lowest_buy(trades[:buys])
+  puts high_sell[1][0] - (low_buy[1][0] * ((1 + 0.0025)/ ( 1 - 0.0026)) + (0.005+0.3*low_buy[1][0])/96)
   if high_sell[1][0] >= (low_buy[1][0] * ((1 + 0.0025)/ ( 1 - 0.0026)) + (0.005+0.3*low_buy[1][0])/96)
     find_highest_amount([high_sell, low_buy])
   end
@@ -73,7 +74,7 @@ def find_highest_amount(data)
 end
 
 def write_to_csv(data)
-  CSV.open('profits1.csv', 'a+') do |csv|
+  CSV.open('profitsOMG-ETH.csv', 'a+') do |csv|
     csv << data
   end
 end
