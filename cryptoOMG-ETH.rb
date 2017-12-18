@@ -11,7 +11,7 @@ def fetch
   # quadrigacx_response = JSON.parse(quadrigacx_response)
   poloniex_response = JSON.parse(poloniex_response)
 
-  if liqui_response["success"] == 0 || quadrigacx_response == nil || poloniex_response == nil
+  if liqui_response["success"] == 0 || poloniex_response == nil
     sleep(rand(6..13))
     fetch
   else
@@ -51,7 +51,7 @@ def profitable_trade(trades)
   counter = 0
   high_sell = find_highest_sell(trades[:sells])
   low_buy = find_lowest_buy(trades[:buys])
-  if high_sell[1][0] >= (low_buy[1][0] * ((1 + 0.0025)/ ( 1 - 0.0026)) + (0.005+0.3*low_buy)/96)
+  if high_sell[1][0] >= (low_buy[1][0] * ((1 + 0.0025)/ ( 1 - 0.0026)) + (0.005+0.3*low_buy[1][0])/96)
     find_highest_amount([high_sell, low_buy])
   end
 end
@@ -64,7 +64,7 @@ def clock
 end
 
 def find_highest_amount(data)
-  # data is in a format of [sellexchange: [rate, eth_amount], buyexchang: [rate, eth_amount]]
+  # data is in a format of [sellexchange: [rate, omg_amount], buyexchang: [rate, omg_amount]]
   if (data[0][1][1] < data[1][1][1])
     write_to_csv([ data[0][0], data[0][1][0], data[1][0], data[1][1][0], data[0][1][1], Time.now ])
   else
