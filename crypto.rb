@@ -73,7 +73,7 @@ def find_highest_amount(data)
 end
 
 def write_to_csv(data)
-  CSV.open('profits1.csv', 'a+') do |csv|
+  CSV.open('profitsOMG-ETH.csv', 'a+') do |csv|
     csv << data
   end
 end
