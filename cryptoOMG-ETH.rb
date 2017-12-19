@@ -60,7 +60,7 @@ end
 def clock
   trades = fetch()
   profitable_trade(trades)
-  sleep(rand(6..13))
+  sleep(rand(8..13))
   clock
 end
 
