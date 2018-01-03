@@ -1,11 +1,12 @@
 require 'csv'
 
-previous_line = ["","","","",""]
-File.open('profits1.csv').each do |line|
+previous_line = ["","","","","","","","",""]
+File.open('index.csv').each do |line|
   line_array = line.split(",")
-  if ((line_array[0] && line_array[1]) != (previous_line[0] && previous_line[1])) && ((line_array[2] && line_array[3]) != (previous_line[2] && previous_line[3])) && line_array[4].to_f > 0.1
+  # if ((line_array[0] && line_array[1]) != (previous_line[0] && previous_line[1])) && ((line_array[2] && line_array[3]) != (previous_line[2] && previous_line[3]))
+  if (line_array[1] != previous_line[1] || line_array[2]!= previous_line[2] || line_array[3]!= previous_line[3] || line_array[4]!= previous_line[4])
     previous_line = line_array
-    line_array[5] = line_array[5].delete!("\n")
+    line_array[8] = line_array[8].delete!("\n")
     CSV.open('cleaned.csv', 'a+') do |csv|
       csv << line_array
     end

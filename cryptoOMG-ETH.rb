@@ -4,9 +4,9 @@ require 'csv'
 require 'httparty'
 
 def fetch
-  liqui_response = HTTParty.get("https://api.liqui.io/api/3/depth/omg_eth?limit=10").to_s
+  liqui_response = HTTParty.get("http://api.liqui.io/api/3/depth/omg_eth?limit=10").to_s
   # quadrigacx_response = open('https://api.quadrigacx.com/public/orders?book=eth_btc&group=1').read
-  poloniex_response = HTTParty.get('https://poloniex.com/public?command=returnOrderBook&currencyPair=ETH_OMG&depth=10').to_s
+  poloniex_response = HTTParty.get('http://poloniex.com/public?command=returnOrderBook&currencyPair=ETH_OMG&depth=10').to_s
 
   liqui_response = JSON.parse(liqui_response)
   # quadrigacx_response = JSON.parse(quadrigacx_response)
@@ -80,5 +80,5 @@ def write_to_csv(data)
   end
 end
 clock()
-# puts HTTParty.get("https://api.liqui.io/api/3/depth/omg_eth?limit=10").parsed_response.class
+# puts HTTParty.get("http://api.liqui.io/api/3/depth/omg_eth?limit=10")
 # puts HTTParty.get('https://poloniex.com/public?command=returnOrderBook&currencyPair=ETH_OMG&depth=10').parsed_response.class
